@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 use App\Post;
 use Auth;
 use View;
-use App\Http\Requests;
+use Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+
 
 
 class PostsController extends Controller
@@ -43,18 +44,25 @@ class PostsController extends Controller
     */
     public function store()
     {
-    $data = Input::all();
+      $data = Request::all();
 
-    $blog = Post::create(array(
-      'title' => Input::get('title'),
-      'author'=> Auth::user()->first,
-      'body'  => Input::get('body')
-    ));
+      $user_id = Auth::user()->id;
+      $post = Post::create(array(
+        'title' => Request::get('title'),
+        'url'=> Request::get('url'),
+        'user_id'=> $user_id,
+        'body'  => Request::get('body')
+      ));
 
-    if($post->save())
-    {
-    return Redirect::route('posts.index');
-    }
+      if($post->save())
+      {
+        $comments = $post->comments()->get();
+        return View::make('posts.show')->with('post', $post)->with('comments', $comments);
+      }
+      else {
+        return Redirect::route('/posts/create');
+      }
+
     }
 
 
@@ -98,9 +106,9 @@ class PostsController extends Controller
       $post = Post::find($id);
 
       //complete validation here
-      $post->title  = Input::get('title');
+      $post->title  = Request::get('title');
       $post->author = Auth::user()->first;
-      $post->body   = Input::get('body');
+      $post->body   = Request::get('body');
 
 
       if($post->save())

@@ -27,24 +27,21 @@ use App\Auth;
 
 Route::group(['middleware' => 'web'], function () {
   Route::auth();
-  Route::get('/', function(){
-    return view('welcome');
-  });
-  //
 
 
+  Route::get('/', 'PostsController@index');
 Route::group(['middleware' => 'auth'], function () {
   Route::get('posts/create', 'PostsController@create');
   Route::get('posts/{id}', 'PostsController@show');
+  Route::get('posts', 'PostsController@index');
   Route::post('posts', 'PostsController@store');
   Route::patch('posts/{id}', 'PostsController@update');
   Route::delete('posts/{id}', 'PostsController@destroy');
 
-
+    
   Route::post('/posts/{id}/comments', 'CommentsController@store');
   Route::patch('comments/{id}', 'CommentsController@update');
   Route::delete('comments/{id}', 'CommentsController@destroy');
-  Route::get('posts', 'PostsController@index');
 });
     //
     Route::get('/home', 'HomeController@index');

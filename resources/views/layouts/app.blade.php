@@ -71,8 +71,10 @@
             </div>
         </div>
     </nav>
+    <div class="container">
 
     @yield('content')
+  </div>
 
     <!-- JavaScripts -->
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}

@@ -26,9 +26,11 @@ class PostsTableSeeder extends Seeder {
         DB::table('posts')->delete();
         for ($i = 1; $i <= 3; $i++) {
           $posts = array(
-              ['title' => "Post 1 - User $i", 'user_id' => $i, 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-              ['title' => "Post 2 - User $i", 'user_id' => $i, 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-              ['title' => "Post 3 - User $i", 'user_id' => $i, 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post 1 - User $i", 'user_id' => $i, 'url'=> 'http://placekitten.com/g/200/500', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post 2 - User $i", 'user_id' => $i, 'url'=> 'http://placekitten.com/g/500/200', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post 3 - User $i", 'user_id' => $i, 'url'=> 'http://placekitten.com/g/300/300', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post 4 - User $i", 'user_id' => $i, 'url'=> null, 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+
           );
                 // Uncomment the below to run the seeder
           DB::table('posts')->insert($posts);

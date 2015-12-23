@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+  <a href="/posts/create">Create new post</a>
     <h2>Posts</h2>
     @if ( !$posts->count() )
         <p>
