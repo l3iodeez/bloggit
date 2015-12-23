@@ -35,7 +35,7 @@
   @else
       <ul>
           @foreach( $comments as $comment )
-              <li>{{ $comment->body }}</a></li>
+              <li>{{ $comment->body }} - {{$comment->author()->get()->first()->username}}</a></li>
           @endforeach
       </ul>
   @endif

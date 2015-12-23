@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
   		$this->call('UsersTableSeeder');
   		$this->call('PostsTableSeeder');
-      // $this->call('CommentsTableSeeder');
+      $this->call('CommentsTableSeeder');
     }
 }
 
@@ -25,11 +25,12 @@ class PostsTableSeeder extends Seeder {
         // Uncomment the below to wipe the table clean before populating
         DB::table('posts')->delete();
         for ($i = 1; $i <= 3; $i++) {
+
           $posts = array(
-              ['title' => "Post 1 - User $i", 'user_id' => $i, 'url'=> 'http://placekitten.com/g/200/500', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-              ['title' => "Post 2 - User $i", 'user_id' => $i, 'url'=> 'http://placekitten.com/g/500/200', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-              ['title' => "Post 3 - User $i", 'user_id' => $i, 'url'=> 'http://placekitten.com/g/300/300', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-              ['title' => "Post 4 - User $i", 'user_id' => $i, 'url'=> null, 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post " . ((($i-1)*4)+1), 'user_id' => $i, 'url'=> 'http://placekitten.com/g/200/500', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post " . ((($i-1)*4)+2), 'user_id' => $i, 'url'=> 'http://placekitten.com/g/500/200', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post " . ((($i-1)*4)+3), 'user_id' => $i, 'url'=> 'http://placekitten.com/g/300/301', 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+              ['title' => "Post " . ((($i-1)*4)+4), 'user_id' => $i, 'url'=> null, 'body'=> 'Lorem ipsum', 'created_at' => new DateTime, 'updated_at' => new DateTime],
 
           );
                 // Uncomment the below to run the seeder
@@ -67,8 +68,18 @@ class CommentsTableSeeder extends Seeder {
       $posts = App\Post::all();
       $users = App\User::all();
 
+      for ($i = 1; $i <= 3; $i++) {
 
-      // Uncomment the below to run the seeder
-      DB::table('comments')->insert($comments);
-  }
+        $comments = array(
+            ['body' => "Nice post!", 'user_id' => $i, 'commentable_id' => ((($i*8)%11)+1), 'commentable_type' =>'App\Post', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['body' => "Agreed.", 'user_id' => $i, 'commentable_id' => ((($i*8)%11)+2), 'commentable_type' =>'App\Post', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['body' => "No way!", 'user_id' => $i, 'commentable_id' => ((($i*8)%11)+3), 'commentable_type' =>'App\Post', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['body' => "I guess...", 'user_id' => $i, 'commentable_id' => ((($i*8)%11)+4), 'commentable_type' =>'App\Post', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+
+        );
+
+        // Uncomment the below to run the seeder
+        DB::table('comments')->insert($comments);
+      }
+    }
 }

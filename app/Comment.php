@@ -18,11 +18,11 @@ class Comment extends Model
 
   public function author()
   {
-      return $this->belongsTo('User', 'user_id');
+      return $this->belongsTo('App\User', 'user_id');
   }
 
   public function comments()
   {
-      return $this->morphMany('Comment', 'commentable');
+      return $this->morphMany('App\Comment', 'commentable');
   }
 }
