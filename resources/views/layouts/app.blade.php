@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
-
+    {!! HTML::style('css/common.css') !!}
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
@@ -41,14 +41,14 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="/">
-                    Laravel
+                    Bloggit!
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Posts</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
